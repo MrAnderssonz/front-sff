@@ -1,0 +1,17 @@
+header
+{
+    background-color: goldenrod;
+    color: black;
+    font-size: 50px;
+    position: sticky;
+    text-align: center;
+}
+footer
+{
+    background-color: goldenrod;
+    color: black;
+    font-size: 15px;
+    position: sticky;
+    text-align: center;
+    bottom: 0;
+}
