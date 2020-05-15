@@ -1,17 +1,69 @@
 header
 {
-    background-color: goldenrod;
+    background-color: #f3ce13;
     color: black;
-    font-size: 50px;
+    font-size: 60px;
     position: sticky;
     text-align: center;
 }
 footer
 {
-    background-color: goldenrod;
+    background-color: #f3ce13;
     color: black;
     font-size: 15px;
-    position: sticky;
+    bottom: 0;
     text-align: center;
     bottom: 0;
+}
+.mainBody
+{
+    background-color: black;
+    text-align: center;
+    font-size: 25px;
+}
+.movieBody
+{
+    background-color: #f3ce13;
+    text-align: center;
+    font-size: 25px;
+    width: 500px;
+}
+.login
+{
+    font-size: 20px;
+    
+}
+body
+{
+    background-color: black;
+    color: black;
+}
+.trivia
+{
+    color: black;
+    text-align: left;
+}
+.triviaName
+{
+    color: black;
+    font-size: 32px;
+    text-align: center;
+}
+.movie
+{
+    font-size: 40px;
+    text-align: center;
+    width: 500px;
+}
+.flex-container
+{
+    display: flex;
+    justify-content: center baseline;
+    flex-flow: row;
+    align-items: flex;
+}
+.flex-container > div
+{
+    margin: 40px;
+    padding: 30px;
 }
