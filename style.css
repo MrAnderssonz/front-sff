@@ -26,7 +26,7 @@ footer
     background-color: #f3ce13;
     text-align: center;
     font-size: 25px;
-    width: 500px;
+    width: 40%;
 }
 .login
 {
@@ -53,7 +53,7 @@ body
 {
     font-size: 40px;
     text-align: center;
-    width: 500px;
+    width: 100%;
 }
 .flex-container
 {
@@ -66,4 +66,32 @@ body
 {
     margin: 40px;
     padding: 30px;
+}
+.button
+{
+    background-color: black;
+    color: white;
+    border: none;
+    transition-duration: 0.4s;
+    border-radius: 12px;
+}
+.button:hover
+{
+    background-color: #a3a2a2;
+    color: white;
+}
+.buttonMovie
+{
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 18px;
+    transition-duration: 0.4s;
+    border-radius: 12px;
+}
+.buttonMovie:hover
+{
+    background-color: #a3a2a2;
+    color: white;
+    font-size: 21px;
 }
