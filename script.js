@@ -25,8 +25,10 @@ function showUserInfo()
     logoutButton.addEventListener("click", function()
     {
         localStorage.setItem("userId", null);
+        printList();
         showLoginPage();
     });
+    footerPart.innerHTML = "";
 
 
 }
@@ -64,7 +66,7 @@ function login(name, password)
             if (name == json[i].name && password == json[i].password && json[i].verified == true)
             {
                 console.log("Inloggad")
-                localStorage.setItem("userId", i)
+                localStorage.setItem("userId", json[i].id)
                 localStorage.setItem("userName", json[i].name)
             }
             else
@@ -74,6 +76,7 @@ function login(name, password)
         }
         if (localStorage.getItem("userId") !== "null")
         {
+            printList();
             showUserInfo();
         }
         else
@@ -188,17 +191,17 @@ function rentMoviePage(movieId, stock)
 
         rightSidePage.innerHTML = "";
         rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='button' onclick='printList()'> Till startsidan</button></div>");
-        rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='buttonMovie' onclick='rentMovie(" + movieId + "," + studioId +")'> Skriv trivia</button></div>");
+        rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='buttonMovie' onclick='writeTrivia(" + movieId + ")'> Skriv trivia</button></div>");
         
         if (moviesOut < stock)
         {
-            console.log("går att hyra");
+            console.log("Går att hyra");
             rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='buttonMovie' onclick='rentMovie(" + movieId + "," + studioId +")'> Hyr film</button></div>");
         }
         else
         {
             //rightSidePage.innerHTML = "";
-            console.log("går inte att hyra");
+            console.log("Går inte att hyra");
             rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='buttonMovie disabled' > HYR FILM</button></div>");
         }
         
@@ -207,11 +210,55 @@ function rentMoviePage(movieId, stock)
             var rent = json.find(a => a.studioId == studioId && a.filmId == movieId && a.returned == false);
             var rentId = rent.id;
             console.log("Finns utlåning");
-            rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='buttonMovie' onclick='returnMovie(" + rentId + "," + movieId + "," + studioId +")'> Återlämna film</button></div>");      
+            rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='buttonMovie' onclick='returnMovie(" + rentId + "," + movieId + "," + studioId +")'> Återlämna film</button></div>");
         }
         
     });
 }
+
+function writeTrivia(movieId)
+{
+    rightSidePage.innerHTML = "";
+    rightSidePage.insertAdjacentHTML("beforeend", "<div> Skriv din trivia här</div>");      
+    rightSidePage.insertAdjacentHTML("beforeend", "<div><input id='newTrivia' type='text' size='80'></div>");
+    rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='button' id='triviaButton'> Skicka in!</button></div>");
+    //rightSidePage.insertAdjacentHTML("beforeend", "<div><form class='textarea'><input class='textarea type='text'></form></div>");
+
+    var triviaButton = document.getElementById("triviaButton");
+    triviaButton.addEventListener("click", function()
+    {
+        var newTrivia = document.getElementById("newTrivia").value;
+        creatTrivia(newTrivia, movieId);
+    });      
+}
+
+function creatTrivia(trivia, movieId)
+{
+    fetch('https://localhost:5001/api/filmtrivia',
+    {
+        method: 'POST',
+        headers:
+        { 
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+            {
+                filmId: movieId,
+                trivia: trivia
+            }),
+    })
+    .then(response => response.json())
+    .then(data =>
+        {
+            console.log('Success', data);
+            printList();
+        })
+    .catch((error) =>
+    {
+        console.error('Error:', error)
+    });
+}
+
 function rentMovie(movieId, studioId)
 {
     console.log("Låna!")

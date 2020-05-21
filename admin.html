@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SFF</title>
+    <title>SFF Admin</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <header>
@@ -11,23 +10,23 @@
         <div">
             SVENSKA FILMFÖRENINGAR
         </div>
-        <div class="login">
-           Admin <input type="text" id="adminName"> 
-           Lösenord <input type="password" id="adminPass">
-           <button id="login">Logga in</button>
-        </div>
+        <div class="login" id="user"></div>
+        <div class="login" id="usererror"></div>
     </div>
 </header>
 <body>
-    <div class="mainBody" id="movieList">
-        
+    <div class="mainBody flex-container">
+        <div class="movieBody" id="leftSidePage"></div>
+        <div class="movieBody" id="rightSidePage"></div>
     </div>
-    <script src="scriptAdmin.js"></script>
 </body>
 <footer>
+    <div id="footerPart">
+    </div>
     Svenska Filmföreningar,
     Box 12345,
     tel: 070-123456789,
     email: kansli@sff.se
+    <script src="scriptAdmin.js"></script>
 </footer>
 </html>
