@@ -236,7 +236,7 @@ function listNewClubs()
 
         for (i = 0; i < studios.length; i++)
         {
-            // need to add mail when it fixed
+            // need to add mail when it fixed with database
             rightSidePage.insertAdjacentHTML
             ("beforeend", "<div><button class='buttonMovie'onclick='verifyNewClub(" + studios[i].id + ",\"" + studios[i].name + "\" ,\"" + studios[i].password + "\")'> " + studios[i].name + "</button>" +"</div>");
         }

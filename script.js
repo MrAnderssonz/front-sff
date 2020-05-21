@@ -19,7 +19,7 @@ function showUserInfo()
 
     userPart.innerHTML = "";
     userPart.insertAdjacentHTML("beforeend", 
-    "<div> Inloggad som: " + userName + "<button class='button' id='userLogout'>Logga ut</button> </div>")
+    "<div> Inloggad som: " + userName + "<button class='button' id='userLogout'>Logga ut</button><button class='button' onclick='printList()'> Till startsidan </button></div>")
 
     var logoutButton = document.getElementById("userLogout");
     logoutButton.addEventListener("click", function()
@@ -37,7 +37,7 @@ function showLoginPage()
 {
     userPart.innerHTML = "";
     userPart.insertAdjacentHTML("beforeend", 
-    "<div><input type='text' id='userName' Placeholder='Filmstudio'> <input type='password' id='userPass' Placeholder='Lösenord'> <button class='button' id='userLogin'>Logga in</button> </div>")
+    "<div><input type='text' id='userName' Placeholder='Filmstudio'> <input type='password' id='userPass' Placeholder='Lösenord'> <button class='button' id='userLogin'>Logga in</button><button class='button' onclick='printList()'> Till startsidan </button></div>")
 
     var loginbutton = document.getElementById("userLogin");
     loginbutton.addEventListener("click", function()
@@ -159,7 +159,7 @@ function showMovie(id)
         console.log(filterMovie);
         
         rightSidePage.innerHTML = "";
-        rightSidePage.insertAdjacentHTML("beforeend", "<div class='triviaName'>" + "Trivia" + "<button class='button' onclick='printList()'> Till startsidan</button></div>");
+        rightSidePage.insertAdjacentHTML("beforeend", "<div class='triviaName'>" + "Trivia" + "</div>");
 
 
         for ( i=0; i < filterMovie.length; i++)
@@ -175,8 +175,8 @@ function showMovie(id)
 
 function rentMoviePage(movieId, stock)
 {
-    //var moviesOut;
     var studioId = localStorage.getItem("userId");
+
     fetch("https://localhost:5001/api/rentedfilm")
     .then(function(response)
     {
@@ -186,11 +186,8 @@ function rentMoviePage(movieId, stock)
     {
         var moviesOut = json.filter(a => a.filmId == movieId && a.returned == false).length;
         var rentExist = json.filter(a => a.studioId == studioId && a.filmId == movieId && a.returned == false).length;
-        //var rentId = rentExist.id;
-        console.log("vad: "+ rentExist);
 
         rightSidePage.innerHTML = "";
-        rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='button' onclick='printList()'> Till startsidan</button></div>");
         rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='buttonMovie' onclick='writeTrivia(" + movieId + ")'> Skriv trivia</button></div>");
         
         if (moviesOut < stock)
@@ -200,7 +197,6 @@ function rentMoviePage(movieId, stock)
         }
         else
         {
-            //rightSidePage.innerHTML = "";
             console.log("Går inte att hyra");
             rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='buttonMovie disabled' > HYR FILM</button></div>");
         }
@@ -222,7 +218,6 @@ function writeTrivia(movieId)
     rightSidePage.insertAdjacentHTML("beforeend", "<div> Skriv din trivia här</div>");      
     rightSidePage.insertAdjacentHTML("beforeend", "<div><input id='newTrivia' type='text' size='80'></div>");
     rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='button' id='triviaButton'> Skicka in!</button></div>");
-    //rightSidePage.insertAdjacentHTML("beforeend", "<div><form class='textarea'><input class='textarea type='text'></form></div>");
 
     var triviaButton = document.getElementById("triviaButton");
     triviaButton.addEventListener("click", function()
@@ -324,7 +319,7 @@ function newFilmclubForm()
     rightSidePage.insertAdjacentHTML("beforeend", "<div> Namn/Stad: <input type:'text' id='newStudioName'> </div>")
     rightSidePage.insertAdjacentHTML("beforeend", "<div> Epost: <input type:'text' id='newStudioMail'> </div>")
     rightSidePage.insertAdjacentHTML("beforeend", "<div> Lösenord: <input type:'text' id='newStudioPassword'> </div>")
-    rightSidePage.insertAdjacentHTML("beforeend", "<div> <button class='button' onclick='printList()'> Gå tillbaka </button> <button class='button' id='saveNewFilmclub'> Skicka in! </button></div>")
+    rightSidePage.insertAdjacentHTML("beforeend", "<div> <button class='button' id='saveNewFilmclub'> Skicka in! </button></div>")
 
     var saveFilmclubButton = document.getElementById("saveNewFilmclub");
     saveFilmclubButton.addEventListener("click", function()
