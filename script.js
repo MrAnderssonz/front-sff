@@ -216,7 +216,7 @@ function writeTrivia(movieId)
 {
     rightSidePage.innerHTML = "";
     rightSidePage.insertAdjacentHTML("beforeend", "<div> Skriv din trivia här</div>");      
-    rightSidePage.insertAdjacentHTML("beforeend", "<div><input id='newTrivia' type='text' size='80'></div>");
+    rightSidePage.insertAdjacentHTML("beforeend", "<div><textarea class='bigInput' Placeholder='Go ahead, make my day'></textarea></div>");
     rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='button' id='triviaButton'> Skicka in!</button></div>");
 
     var triviaButton = document.getElementById("triviaButton");

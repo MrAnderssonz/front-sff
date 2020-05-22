@@ -27,6 +27,7 @@ footer
     text-align: center;
     font-size: 25px;
     width: 40%;
+    resize: none;
 }
 .login
 {
@@ -91,9 +92,10 @@ body
 }
 .buttonMovie:hover
 {
-    background-color: #a3a2a2;
+    background-color: #7c7c7c;
     color: white;
     font-size: 21px;
+    border: 2px solid white;
 }
 .disabled
 {
@@ -109,4 +111,10 @@ body
 {
     color: rgb(63, 128, 10);
     text-align: center;
+}
+.bigInput
+{
+    width: 80%;
+    height: 6em;
+    resize: none;
 }
