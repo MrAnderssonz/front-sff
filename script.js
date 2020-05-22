@@ -130,7 +130,6 @@ function showMovie(id)
     })
     .then(function(json)
     {
-        //var findMovie = json.find(a => a.id === "1");
         console.log(json.name);
         leftSidePage.innerHTML = "";
         leftSidePage.insertAdjacentHTML("beforeend", "<div class='movie'><b>" + json.name + "</b></div>");
@@ -188,6 +187,7 @@ function rentMoviePage(movieId, stock)
         var rentExist = json.filter(a => a.studioId == studioId && a.filmId == movieId && a.returned == false).length;
 
         rightSidePage.innerHTML = "";
+        rightSidePage.insertAdjacentHTML("beforeend", "<div>Det finns "+ (stock-moviesOut) +" kopior kvar att låna ut just nu!</div>");
         rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='buttonMovie' onclick='writeTrivia(" + movieId + ")'> Skriv trivia</button></div>");
         
         if (moviesOut < stock)
@@ -216,7 +216,7 @@ function writeTrivia(movieId)
 {
     rightSidePage.innerHTML = "";
     rightSidePage.insertAdjacentHTML("beforeend", "<div> Skriv din trivia här</div>");      
-    rightSidePage.insertAdjacentHTML("beforeend", "<div><textarea class='bigInput' Placeholder='Go ahead, make my day'></textarea></div>");
+    rightSidePage.insertAdjacentHTML("beforeend", "<div><textarea id='newTrivia' class='bigInput' Placeholder='Go ahead, make my day'></textarea></div>");
     rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='button' id='triviaButton'> Skicka in!</button></div>");
 
     var triviaButton = document.getElementById("triviaButton");

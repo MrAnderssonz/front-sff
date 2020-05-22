@@ -5,7 +5,6 @@ var leftSidePage = document.getElementById("leftSidePage");
 var rightSidePage = document.getElementById("rightSidePage");
 var userPart = document.getElementById("user");
 var userPartError = document.getElementById("usererror");
-var footerPart = document.getElementById("footerPart");
 
 if (localStorage.getItem("adminId") === "null")
 {
@@ -17,7 +16,7 @@ else
     showUserInfo();
 }
 
-function menyPage()
+function menuPage()
 {
     leftSidePage.innerHTML = "";
     rightSidePage.innerHTML = "";
@@ -33,8 +32,8 @@ function showUserInfo()
 
     userPart.innerHTML = "";
     userPart.insertAdjacentHTML("beforeend", 
-    "<div> Inloggad som: " + adminName + "<button class='button' id='userLogout'>Logga ut</button><button class='button' onclick='menyPage()'> Till huvudmeny</button></div>")
-    menyPage();
+    "<div> Inloggad som: " + adminName + "<button class='button' id='userLogout'>Logga ut</button><button class='button' onclick='menuPage()'> Till huvudmeny</button></div>")
+    menuPage();
 
     var logoutButton = document.getElementById("userLogout");
     logoutButton.addEventListener("click", function()
@@ -107,7 +106,6 @@ function filmclubList()
         leftSidePage.innerHTML = "";
         rightSidePage.innerHTML = "";
         
-        //json.sort((a, b) => (a.name > b.name) ? 1 : -1);
         var studios = json.filter(a => a.verified == true).sort((a, b) => (a.name > b.name) ? 1 : -1);
         leftSidePage.insertAdjacentHTML("beforeend", "<div> Film Studios </div>");
 
@@ -178,7 +176,7 @@ function addMovieForm()
     rightSidePage.insertAdjacentHTML("beforeend", "<div> Lägg till film </div>")
     rightSidePage.insertAdjacentHTML("beforeend", "<div class='addMovieText'> Namn: <input type:'text' id='movieName'> </div>")
     rightSidePage.insertAdjacentHTML("beforeend", "<div class='addMovieText'> Antal: <input type:'text' id='movieStock'> </div>")
-    rightSidePage.insertAdjacentHTML("beforeend", "<div class='addMovieText'> Poster: <input type:'text' id='moviePoster'> </div>")
+    rightSidePage.insertAdjacentHTML("beforeend", "<div class='addMovieText'> Omslag: <input type:'text' id='moviePoster'> </div>")
     rightSidePage.insertAdjacentHTML("beforeend", "<div class='addMovieText'> <button class='button' id='saveNewMovie'> Lägg till! </button></div>")
 
     var saveNewMovie = document.getElementById("saveNewMovie");
@@ -187,7 +185,7 @@ function addMovieForm()
         var movieName = document.getElementById("movieName").value;
         var movieStock = parseInt(document.getElementById("movieStock").value);
         var moviePoster = parseInt(document.getElementById("moviePoster").value);
-        addMovie(movieName, movieStock);
+        addMovie(movieName, movieStock, moviePoster);
 
     });
 }
@@ -213,7 +211,7 @@ function addMovie(name, stock, poster)
     .then(data =>
         {
             console.log('Success', data);
-            menyPage();
+            menuPage();
         })
     .catch((error) =>
     {
@@ -268,6 +266,6 @@ function verifyNewClub(id, name, password)
     .then(data =>
         {
             console.log('Success:', data);
-            menyPage();
+            menuPage();
         })
 }
