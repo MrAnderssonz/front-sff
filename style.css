@@ -105,12 +105,12 @@ body
 .rent
 {
     color: rgb(180, 18, 18);
-    text-align: center;
+    text-align: left;
 }
 .rentReturned
 {
     color: rgb(63, 128, 10);
-    text-align: center;
+    text-align: left;
 }
 .bigInput
 {
