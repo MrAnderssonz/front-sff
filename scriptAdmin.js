@@ -176,21 +176,23 @@ function addMovieForm()
 {
     rightSidePage.innerHTML = "";
     rightSidePage.insertAdjacentHTML("beforeend", "<div> Lägg till film </div>")
-    rightSidePage.insertAdjacentHTML("beforeend", "<div> Namn: <input type:'text' id='movieName'> </div>")
-    rightSidePage.insertAdjacentHTML("beforeend", "<div> Antal: <input type:'text' id='movieStock'> </div>")
-    rightSidePage.insertAdjacentHTML("beforeend", "<div><button class='button' id='saveNewMovie'> Lägg till! </button></div>")
+    rightSidePage.insertAdjacentHTML("beforeend", "<div class='addMovieText'> Namn: <input type:'text' id='movieName'> </div>")
+    rightSidePage.insertAdjacentHTML("beforeend", "<div class='addMovieText'> Antal: <input type:'text' id='movieStock'> </div>")
+    rightSidePage.insertAdjacentHTML("beforeend", "<div class='addMovieText'> Poster: <input type:'text' id='moviePoster'> </div>")
+    rightSidePage.insertAdjacentHTML("beforeend", "<div class='addMovieText'> <button class='button' id='saveNewMovie'> Lägg till! </button></div>")
 
     var saveNewMovie = document.getElementById("saveNewMovie");
     saveNewMovie.addEventListener("click", function()
     {
         var movieName = document.getElementById("movieName").value;
         var movieStock = parseInt(document.getElementById("movieStock").value);
+        var moviePoster = parseInt(document.getElementById("moviePoster").value);
         addMovie(movieName, movieStock);
 
     });
 }
 
-function addMovie(name, stock)
+function addMovie(name, stock, poster)
 {
     fetch('https://localhost:5001/api/film',
     {
@@ -201,6 +203,8 @@ function addMovie(name, stock)
         },
         body: JSON.stringify(
             {
+                // add later when database is fixed
+                //poster: poster,
                 name: name,
                 stock: stock
             }),

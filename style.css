@@ -118,3 +118,7 @@ body
     height: 6em;
     resize: none;
 }
+.addMovieText
+{
+    text-align: left;
+}
